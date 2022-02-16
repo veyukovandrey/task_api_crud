@@ -18,8 +18,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('substance', function() {
     return \App\Models\Substance::all();
 });
+
 Route::get('manufacturer', function() {
     return \App\Models\Manufacturer::all();
+});
+
+Route::get('drag', function() {
+    return \App\Models\Drag::all();
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

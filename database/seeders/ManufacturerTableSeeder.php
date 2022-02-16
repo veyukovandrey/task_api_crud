@@ -20,8 +20,8 @@ class ManufacturerTableSeeder extends Seeder
 
         $faker = \Faker\Factory::create();
 
-        // Добавим 10 записей
-        for ($i = 0; $i < 10; $i++) {
+        // Добавим 5 записей
+        for ($i = 0; $i < 5; $i++) {
             Manufacturer::create([
                 'title' => $faker->sentence,
             ]);

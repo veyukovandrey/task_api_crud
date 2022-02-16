@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Substance;
+use App\Models\Drag;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
-class SubstanceTableSeeder extends Seeder
+class DragTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -16,14 +16,17 @@ class SubstanceTableSeeder extends Seeder
     public function run()
     {
         // Удалим имеющиеся в таблице данные
-        Substance::truncate();
+        Drag::truncate();
 
         $faker = \Faker\Factory::create();
 
         // Добавим 5 записей
         for ($i = 0; $i < 5; $i++) {
-            Substance::create([
+            Drag::create([
                 'title' => $faker->sentence,
+                'substance_id' => $faker->numberBetween(1,5),
+                'manufacturer_id' => $faker->numberBetween(1,5),
+                'price' => $faker->randomFloat(2, 0, 10000),
             ]);
         }
     }
