@@ -1,7 +1,10 @@
 <?php
 
+
+
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\DragController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,9 +26,15 @@ Route::get('manufacturer', function() {
     return \App\Models\Manufacturer::all();
 });
 
-Route::get('drag', function() {
-    return \App\Models\Drag::all();
-});
+
+Route::get('drag/show', [DragController::class, 'index']);
+Route::get('drag/show/{drag}', [DragController::class, 'show']);
+Route::post('drag/add', [DragController::class, 'store']);
+Route::put('drag/update/{drag}', [DragController::class, 'update']);
+Route::delete('drag/delete/{drag}', [DragController::class, 'delete']);
+
+
+
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
