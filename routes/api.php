@@ -5,6 +5,8 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DragController;
+use App\Http\Controllers\SubstanceController;
+use App\Http\Controllers\ManufacturerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,15 +20,17 @@ use App\Http\Controllers\DragController;
 */
 
 
-Route::get('substance', function() {
-    return \App\Models\Substance::all();
+
+
+use Illuminate\Support\Facades\Artisan;
+Route::post('init_db_fake_data', function() {
+    Artisan::call('db:seed');
+    return "init done";
 });
 
-Route::get('manufacturer', function() {
-    return \App\Models\Manufacturer::all();
-});
 
-
+Route::get('substance/show', [ManufacturerController::class, 'index']);
+Route::get('manufacturer/show', [SubstanceController::class, 'index']);
 Route::get('drag/show', [DragController::class, 'index']);
 Route::get('drag/show/{drag}', [DragController::class, 'show']);
 Route::post('drag/add', [DragController::class, 'store']);
