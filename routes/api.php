@@ -22,11 +22,20 @@ use App\Http\Controllers\ManufacturerController;
 
 
 
+
+
+use App\Http\Controllers\AuthController;
+Route::post('/register', [AuthController::class, 'register']);
+Route::post('/login', [AuthController::class, 'login']);
+
+
 use Illuminate\Support\Facades\Artisan;
 Route::post('init_db_fake_data', function() {
     Artisan::call('db:seed');
     return "init done";
 });
+
+
 
 
 Route::get('substance/show', [ManufacturerController::class, 'index']);
