@@ -36,11 +36,13 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->renderable(function (NotFoundHttpException $e, $request) {
-            if ($request->is('api/*')) {
+            if ($request->is('*')) {
                 return response()->json([
-                    'message' => 'Record not found.'
+                    'message' => 'Route not found.'
                 ], 404);
             }
         });
     }
+
+
 }
