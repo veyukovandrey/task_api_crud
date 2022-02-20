@@ -41,9 +41,101 @@
 > Сервер запуститься по адресу http://localhost на стандартном порту, убедитесь что он у Вас в данный момент не используется.
 
 
-## Регистрация и получение токена
-
 
 ## Действующие API
+
+#### Регистрация и получение токена
+
+##### Запрос:
+
+ curl -X POST http://localhost/api/register \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ -d '{"name": "MyName", "email": "name@mail.com", "password": "Qwerty123$"}'
+
+##### Ответ:
+ 
+ {
+    "access_token":"3|11Wj1gpR5O9XhDgYht4nPlYJ1WyJRhLQHSppQw7W",
+    "token_type":"Bearer"
+ }
+ 
+ > Полученые токен и тип токена буду использоваться ниже в качестве примера (Вам нужно будет подставлять выданый Вам токен)
+ 
+ 
+#### Логин и получение токена
+
+ curl -X POST http://localhost/api/login \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ -d '{"email": "name@mail.com", "password": "Qwerty123$"}'
+
+
+#### Заполнение/оновление БД синтетическими данными
+
+ curl -X POST http://localhost/api/init_db_fake_data \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+  -H "Authorization: Bearer 3|11Wj1gpR5O9XhDgYht4nPlYJ1WyJRhLQHSppQw7W"
+ 
+#### Список действующих веществ
+
+ curl -X GET http://localhost/api/substance/show \
+ -H "Accept: application/json" \
+ -H "Content-Type: application/json" \
+ -H "Authorization: Bearer 3|11Wj1gpR5O9XhDgYht4nPlYJ1WyJRhLQHSppQw7W"
+ 
+ 
+ #### Список производителей
+ 
+  curl -X GET http://localhost/api/manufacturer/show \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer 3|11Wj1gpR5O9XhDgYht4nPlYJ1WyJRhLQHSppQw7W"
+  
+  
+ #### Список всех лекарственных средств
+ 
+  curl -X GET http://localhost/api/drag/show \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer 3|11Wj1gpR5O9XhDgYht4nPlYJ1WyJRhLQHSppQw7W"
+  
+
+#### Получить лекарственное средство по ID
+ 
+  curl -X GET http://localhost/api/drag/show/{ID} \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer 3|11Wj1gpR5O9XhDgYht4nPlYJ1WyJRhLQHSppQw7W"
+ 
+ 
+ 
+#### Добавить лекарственное средство
+ 
+  curl -X POST http://localhost/api/drag/add \
+  -H "Accept: application/json" \
+  -H "Content-Type: application/json" \
+  -H "Authorization: Bearer 3|11Wj1gpR5O9XhDgYht4nPlYJ1WyJRhLQHSppQw7W" \
+  -d '{"title": "Enytitle", "substance_id": "4", "manufacturer_id": "2", "price": "435.78"}'
+ 
+ 
+ #### Обновить лекарственное средство по ID
+  
+   curl -X PUT http://localhost/api/drag/update/{ID} \
+   -H "Accept: application/json" \
+   -H "Content-Type: application/json" \
+   -H "Authorization: Bearer 3|11Wj1gpR5O9XhDgYht4nPlYJ1WyJRhLQHSppQw7W" \
+   -d '{"title": "Updatetitle", "substance_id": "3", "manufacturer_id": "3", "price": "111.11"}'
+  
+  
+   
+ #### Удалить лекарственное средство по ID
+  
+   curl -X DELETE http://localhost/api/drag/delete/{ID} \
+   -H "Accept: application/json" \
+   -H "Content-Type: application/json" \
+   -H "Authorization: Bearer 3|11Wj1gpR5O9XhDgYht4nPlYJ1WyJRhLQHSppQw7W" 
+  
 
 
